@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Files | Abinandan H.S. School Betma</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        .back{
+            height: 50px;
+            width: 100px;
+            padding: 5px;
+            position: absolute;
+            bottom: 5%;
+            left: 48%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4">Manage Files</h1>
+
+        <div class="alert alert-info">
+            Please note: To free up space, you may need to delete files. Total allowed storage is 16 GB. Ensure no files exceed 500 MB for videos.
+        </div>
+
+        <!-- File list with delete option -->
+        <form method="post">
+            <div class="list-group mb-4">
+                {% for file in files %}
+                <div class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ file }}
+                    <form method="post" action="{{ url_for('delete_page') }}" style="display:inline;">
+                        <input type="hidden" name="file_to_delete" value="{{ file }}">
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                </div>
+                {% endfor %}
+            </div>
+        </form>
+    </div>
+    <a href="/" class="back">Back</a>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.1/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

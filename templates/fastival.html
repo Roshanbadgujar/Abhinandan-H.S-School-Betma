@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events | Abhinandan H.S. School Betma</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .event-card {
+            margin-bottom: 20px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .event-card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .event-card img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        .event-card .card-body {
+            padding: 15px;
+        }
+
+        .event-card .card-title {
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .event-card .card-text {
+            margin-bottom: 10px;
+        }
+
+        .event-date {
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #0056b3;
+        }
+
+        .previous-events {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .previous-events .card-body {
+            background-color: #ffffff;
+        }
+
+        .tab-content {
+            padding: 20px;
+        }
+
+        .tab-pane {
+            display: none;
+        }
+
+        .tab-pane.active {
+            display: block;
+        }
+        .back{
+            height: 50px;
+            width: 100px;
+            padding: 5px;
+            position: absolute;;
+            left: 48%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Our School Events</h1>
+            <p>Stay updated with the latest and past events happening at our school.</p>
+        </div>
+
+        <!-- Nav Tabs -->
+        <ul class="nav nav-tabs" id="eventsTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="upcoming-events-tab" data-toggle="tab" href="#upcoming-events" role="tab" aria-controls="upcoming-events" aria-selected="true">Upcoming Events</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="previous-events-tab" data-toggle="tab" href="#previous-events" role="tab" aria-controls="previous-events" aria-selected="false">Previous Events</a>
+            </li>
+        </ul>
+
+        <!-- Tab Content -->
+        <div class="tab-content" id="eventsTabContent">
+            <!-- Upcoming Events -->
+            <div class="tab-pane fade show active" id="upcoming-events" role="tabpanel" aria-labelledby="upcoming-events-tab">
+                <div class="event-card">
+                    <img src="sports-day.jpg" alt="Annual Sports Day">
+                    <div class="card-body">
+                        <h5 class="card-title">Annual Sports Day</h5>
+                        <p class="event-date">January 15, 2024</p>
+                        <p class="card-text">Join us for our Annual Sports Day featuring various sports activities and competitions. All students are encouraged to participate and showcase their athletic skills.</p>
+                        <a href="#" class="btn btn-primary">More Details</a>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <img src="science-fair.jpg" alt="Science Fair">
+                    <div class="card-body">
+                        <h5 class="card-title">Science Fair</h5>
+                        <p class="event-date">February 20, 2024</p>
+                        <p class="card-text">The Science Fair will be held to showcase student projects and experiments. Parents and community members are welcome to attend and view the exhibits.</p>
+                        <a href="#" class="btn btn-primary">More Details</a>
+                    </div>
+                </div>
+                <div class="event-card">
+                    <img src="spring-concert.jpg" alt="Spring Concert">
+                    <div class="card-body">
+                        <h5 class="card-title">Spring Concert</h5>
+                        <p class="event-date">March 25, 2024</p>
+                        <p class="card-text">Our Spring Concert will feature performances by our school’s music and drama students. It's an evening filled with music, dance, and entertainment.</p>
+                        <a href="#" class="btn btn-primary">More Details</a>
+                    </div>
+                </div>
+            </div>
+            <!-- Previous Events -->
+            <div class="tab-pane fade" id="previous-events" role="tabpanel" aria-labelledby="previous-events-tab">
+                <div class="previous-events">
+                    <div class="event-card">
+                        <img src="winter-fest.jpg" alt="Winter Fest">
+                        <div class="card-body">
+                            <h5 class="card-title">Winter Fest</h5>
+                            <p class="event-date">December 10, 2023</p>
+                            <p class="card-text">Winter Fest was a festive celebration with various winter-themed activities, including a Christmas play and caroling.</p>
+                            <a href="#" class="btn btn-primary">View Highlights</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <img src="art-exhibition.jpg" alt="Art Exhibition">
+                        <div class="card-body">
+                            <h5 class="card-title">Art Exhibition</h5>
+                            <p class="event-date">November 5, 2023</p>
+                            <p class="card-text">The Art Exhibition showcased the creative talents of our students with a variety of paintings and sculptures.</p>
+                            <a href="#" class="btn btn-primary">View Highlights</a>
+                        </div>
+                    </div>
+                    <div class="event-card">
+                        <img src="teachers-day.jpg" alt="Teacher’s Day Celebration">
+                        <div class="card-body">
+                            <h5 class="card-title">Teacher’s Day Celebration</h5>
+                            <p class="event-date">September 5, 2023</p>
+                            <p class="card-text">A special day dedicated to honoring and celebrating our teachers with performances and heartfelt messages.</p>
+                            <a href="#" class="btn btn-primary">View Highlights</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="/" class="back">Back</a>
+    <!-- GSAP and Bootstrap JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.0/ScrollTrigger.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,879 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title> Abinandan H.S. School Betma</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+     <!-- GSAP Library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.5/gsap.min.js"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='cs/style.css') }}">
+</head>
+<body>
+    <div id="movable-button" class="movable" onmousedown="startDrag(event)">
+        <img src="uploads/contact.jpg" alt="Alert" class="bttt">
+    </div>  
+    <!-- Main Content -->
+       <div class="main-content" id="mainContent">
+     <!-- Alert Overlay -->
+     <div class="landing" id="landing-page">
+            <img src="uploads/abhinandan_logo.jpg" alt="Alert" class="logo">
+            <h2>Since 1986</h2>
+            <h1 class="site-name">| | श्री गणेशाय नमः | |</h1>
+    </div>
+
+    <!-- Modal for image alert -->
+    <div class="modal fade" id="alertModal" tabindex="-1" aria-labelledby="alertModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="alertModalLabel">Admission Open</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <img src="uploads/admission.jpg" alt="Admission Update">
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#"><img src="uploads/abhinandan_logo.jpg" alt=""></a>
+                <!-- Google Translate Element -->
+    <div id="google_translate_element"></div>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#images_videos">Function</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/calendar">View Calendar</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/fastival">Events</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#Topers">School Topers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" onclick="openPDF('school_books.pdf')" href="#">School Books</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            School Fees
+                        </a>
+                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                            <li><a class="dropdown-item" onclick="openPDF('school_fees.pdf')" href="#">School Fees Stracture</a></li>
+                            <li><a class="dropdown-item" onclick="openPDF('bus_fees.pdf')"href="#">Bus Fees Stracture</a></li>
+                            <li><a class="dropdown-item" href="{{ url_for('register_page') }}" >Register Now</a
+                                ></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Sections -->
+    <section class="section" id="home">
+        <div class="hero">
+            <!-- Slideshow Background -->
+            <div class="slideshow">
+                <img src="uploads/bg-image1.jpg" alt="Slide 1" class="slide">
+                <img src="uploads/bg-image2.jpg" alt="Slide 2" class="slide">
+                <img src="uploads/bg-image3.jpg" alt="Slide 3" class="slide">
+                <img src="uploads/bg-image4.jpg" alt="Slide 4" class="slide">
+            </div>
+        
+            <!-- School Name and Address -->
+            <div class="hero-content">
+                <img src="uploads/abhinandan_logo.jpg" alt="Logo" class="logo">
+                <h2>Since 1986</h2>
+                <h1 class="site-name">| | श्री गणेशाय नमः | |</h1>
+                <h1 class="hero-title">ABHINANDAN H.S. SCHOOL</h1>
+                <p class="hero-address">Near Gurudwara Betma Dist Indore (M.P)</p>
+            </div>
+        </div>
+    </section>
+
+
+
+    <section class="section" id="images_videos">
+        <!-- Main container -->
+<div class="container mt-5">
+    <!-- Row for media content -->
+    <div class="row" id="mediaContent">
+        <!-- Display first 3 images and 3 videos -->
+        <div class="col-md-4 mb-3">
+            <img src="uploads/image1.jpg" alt="Image 1" class="img-fluid">
+        </div>
+        <div class="col-md-4 mb-3">
+            <img src="uploads/image2.jpg" alt="Image 2" class="img-fluid">
+        </div>
+        <div class="col-md-4 mb-3">
+            <img src="uploads/image3.jpg" alt="Image 3" class="img-fluid">
+        </div>
+        <div class="col-md-4 mb-3">
+            <video controls class="w-100">
+                <source src="uploads/video1.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="col-md-4 mb-3">
+            <video controls class="w-100">
+                <source src="uploads/video2.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+        <div class="col-md-4 mb-3">
+            <video controls class="w-100">
+                <source src="uploads/video3.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+</div>
+<li class="butt" ><a href="{{ url_for('gallery') }}">See More</a></li>
+    </section>
+    
+    <section class="section" id="school-details">
+        <!-- School Details Container -->
+<div class="school-details-container">
+    <div class="school-details-header">School Details</div>
+    <ul class="school-details-list">
+        <li><span class="school-detail-label">Name:</span> Abhinandan H.S. School</li>
+        <li><span class="school-detail-label">Address:</span> Gurudwara Road, Betma, Indore</li>
+        <li><span class="school-detail-label">Status:</span> Private</li>
+        <li><span class="school-detail-label">Under In:</span> Government School Betma</li>
+        <li><span class="school-detail-label">Phone Number:</span> (123) 456-7890</li>
+        <li><span class="school-detail-label">Principal:</span> Mr. John Doe</li>
+        <li><span class="school-detail-label">Established:</span> 1995</li>
+        <li><span class="school-detail-label">Number of Students:</span> 1,200</li>
+        <li><span class="school-detail-label">Number of Teachers:</span> 30</li>
+        <li><span class="school-detail-label">Number of Bus:</span> 2</li>
+        <li><span class="school-detail-label">Motto:</span> "Learning for a Better Tomorrow"</li>
+    </ul>
+</div>
+
+    </section>
+
+    <section class="section" id="services">
+        <div class="container mt-5">
+            <div class="container-custom" id="container1">
+                <div class="row align-items-center">
+
+                    <div class="col-md-6 text-center">
+                        <img src="uploads/computer_lab.jpg" alt="Responsive Image 2" class="image-custom">
+                    </div>
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <h3>Computer Lab</h3>
+                        <div class="text-content" id="textContent1" style="max-height: 100px;">
+                            <p>Computer Lab </p>
+                            <p>Our school's computer lab is a modern and dynamic space designed to enhance students' digital literacy and technological skills. It provides a conducive environment for learning, exploration, and creativity, ensuring that every student is well-equipped to thrive in an increasingly digital world.</p> <br>
+
+                           <h4>1. Features of Our Computer Lab</h4>
+                            <h5>State-of-the-Art Equipment:</h5>
+                            <p> Equipped with the latest desktop computers, laptops, and tablets to support a wide range of educational activities.</p>
+                            <p>High-speed internet connectivity to facilitate research, online learning, and digital collaboration.</p>
+                            <p> Modern software and tools for programming, graphic design, animation, and other specialized subjects.</p> <br>
+
+                           <h5> Interactive Learning Environment:</h5>
+
+                           <p> Smartboards, projectors, and multimedia tools to create an engaging and interactive learning experience.</p>
+                           <p>Collaborative workstations to encourage teamwork, problem-solving, and peer learning among students.</p> <br>
+                           
+                           <h5> Digital Resources:</h5>
+                            
+                            <p> Access to a vast array of online resources, e-books, educational videos, and interactive learning platforms.</p>
+                            <p> Software applications for coding, robotics, digital art, web design, and more.</p> <br><br>
+                            
+                            <h4>2. Programs and Activities in the Computer Lab</h4>
+                            
+                            <h5>Information Technology Classes:</h5>
+                            
+                           <p> Regular IT classes integrated into the curriculum, covering essential topics such as basic computer skills, internet safety, programming, and digital literacy.</p>
+                           <p>Advanced courses in coding, robotics, and computer science for senior students.</p> <br>
+                           
+                           <h5> Coding and Robotics Club:</h5>
+                            
+                            <p> Regular IT classes integrated into the curriculum, covering essential topics such as basic computer skills, internet safety, programming, and digital literacy.</p>
+                            <p> Advanced courses in coding, robotics, and computer science for senior students.</p> <br>
+                            
+                            <h5>Digital Creativity Workshops:</h5>
+                            
+                            <p>Workshops on graphic design, animation, video editing, and multimedia presentation skills. </p>
+                            <p> Opportunities for students to create digital art, short films, and presentations, enhancing their creative and technical abilities.</p> <br>
+
+                            <h5>Cyber Safety and Ethics Training:</h5>
+
+                            <p>Workshops on graphic design, animation, video editing, and multimedia presentation skills.</p>
+                                Opportunities for students to create digital art, short films, and presentations, enhancing their creative and technical abilities. <br> <br>
+                            
+                            <h5>Cyber Safety and Ethics Training:</h5>
+                            
+                            <p> Skill Development:</p>
+                            
+                            <p>Enhances critical thinking, problem-solving, and analytical skills through interactive and practical learning experiences.</p>
+                            <p> Prepares students for future careers in technology, science, engineering, and other fields.</p> <br>
+                            
+                            <h5>Promotes Digital Literacy:</h5>
+                           <p> Equips students with the knowledge and skills to navigate and utilize digital tools and technologies effectively.</p>
+                           <p>Encourages exploration of new technologies and fosters a lifelong love of learning.</p><br>
+                            
+                            <h5>Inclusive Learning:</h5>
+
+                           <p> Accessible to all students, with support for those who may need additional help or accommodations.</p>
+                           <p>Encourages equal participation and ensures that every student benefits from technological advancements.</p> <br> <br>
+                            
+                           <h4>3. Lab Rules and Guidelines</h4>
+                            
+                            <h5> Respect for Equipment:</h5>
+
+                           <p> Handle all equipment with care and follow the teacher's instructions on proper usage.</p>
+                           <p>No food or drinks are allowed in the computer lab to maintain cleanliness and protect the equipment.</p> <br>
+                            
+                            <h3>Internet Safety:</h3>
+
+                            <p>Only access approved websites and educational resources as directed by the teacher.</p>
+                            <p> Never share personal information online and report any suspicious activity immediately.</p><br>
+
+                            <h5>Maintain a Learning Environment:</h5>
+
+                            <p>Speak softly and be considerate of others working in the lab.</p>
+                            <p>Log out of computers and clean your workstation before leaving.</p> <br> <br>
+
+                            <h4>4. Access and Availability </h4>
+
+                            <h5> Lab Schedule:</h5>
+                            
+                            <p>The computer lab is open during school hours for scheduled classes and after-school activities.</p>
+                            <p> Special sessions are available for individual learning, research, and project work upon prior arrangement.</p> <br>
+                            
+                            <h5> Support and Assistance:</h5>
+
+                            <p>Experienced IT staff and teachers are always available to provide guidance, support, and troubleshooting assistance.</p>
+                        </div>
+                        <button class="btn btn-primary mt-2" onclick="toggleText('textContent1', this)">Show More</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Multiple Containers for Text and Images -->
+            <div class="container-custom" id="container2">
+                <div class="row align-items-center">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <h3>Library</h3>
+                        <div class="text-content" id="textContent2" style="max-height: 100px;">
+                            <h4>Welcome to Our School Library!</h4>
+                            <p>Our school library is a vibrant space designed to foster a love of reading, learning, and exploration. We welcome all students, teachers, and staff to immerse themselves in our collection of books, digital resources, and a quiet, comfortable environment perfect for study, research, and relaxation.</p> <br> <br>
+                            <h4>1. Library Overview</h4>
+                            <h5>About the Library:</h5>
+                            <p>Our library is a center for knowledge and imagination, housing a diverse collection of books, magazines, journals, and digital resources that cater to all interests and age groups. Whether you're looking for fiction, non-fiction, reference materials, or the latest periodicals, our library has something for everyone!</p> <br> <br>
+                            <h4>2. Our Collections</h4>
+                            <h5>Books:</h5>
+                            <p>A vast collection of fiction and non-fiction books across all genres, including science, history, literature, art, technology, and more.</p>
+                            <p>A special section for young readers featuring picture books, storybooks, and children's literature.</p><br>
+                            <h5>Digital Resources:</h5>
+                            <p>Access to e-books, audiobooks, and online databases for research and study.</p>
+                            <p>Computers and tablets available for students to explore digital content, research, and complete assignments.</p><br>
+                            <h5>Magazines and Journals:</h5>
+                            <p>A variety of magazines and journals covering current events, science, technology, arts, sports, and educational topics.</p><br>
+                            <h5>Reference Section:</h5>
+                            <p>Encyclopedias, dictionaries, atlases, and other reference materials to assist in research and study.</p> <br> <br>
+                            <h4>3. Library Services</h4>
+                            <h5>Book Borrowing:</h5>
+                            <p>Students can borrow up to 3 books at a time for a period of two weeks. Renewals are available upon request.</p>
+                            <p>Teachers can borrow up to 5 books for a period of four weeks.</p><br>
+                            <h5>Study Spaces:</h5>
+                            <p>Quiet study areas and group study rooms are available for individual or collaborative learning.</p>
+                            <p>Comfortable reading nooks for those who want to relax with a good book.</p><br>
+                            <h5>Library Catalog:</h5>
+                            <p>An online catalog is available to search for books, check availability, and reserve titles.</p><br>
+                            <h5>Research Assistance:</h5>
+                            <p>Our librarians are here to help students and teachers find resources, conduct research, and use library tools effectively.</p><br> <br>
+                            <h4>4. Events and Programs</h4>
+                            <h5>Reading Challenges:</h5>
+                            <p>Monthly reading challenges with exciting prizes to encourage students to explore different genres and authors.</p><br>
+                            <h5>Book Club:</h5>
+                            <p>A weekly book club where students gather to discuss their favorite books, authors, and literary themes</p><br>
+                            <h5>Workshops and Author Visits:</h5>
+                            <p>Regular workshops on research skills, digital literacy, and creative writing.</p>
+                            <p>Visits from local and international authors to inspire young readers and writers.</p><br><br>
+                            <h4>Library Rules and Guidelines</h4>
+                            <h5>Respect the Space:</h5>
+                            <p>Maintain silence and respect the quiet environment for others.</p><br>
+                            <h5>Care for the Books:</h5>
+                            <p>Handle books and materials with care and return them on time.</p><br>
+                            <h5>Use of Digital Devices:</h5>
+                            <p>Digital devices are allowed for research and study purposes only. Social media and gaming are not permitted.</p>
+                        </div>
+                        <button class="btn btn-primary mt-2" onclick="toggleText('textContent2', this)">Show More</button>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="uploads/library.jpg" alt="Responsive Image 1" class="image-custom">
+                    </div>
+                </div>
+            </div>
+            <div class="container-custom" id="container3">
+                <div class="row align-items-center">
+
+                    <div class="col-md-6 text-center">
+                        <img src="uploads/play_ground.jpg" alt="Responsive Image 2" class="image-custom">
+                    </div>
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <h3>Assembly area snd Playground</h3>
+                        <div class="text-content" id="textContent3" style="max-height: 100px;">
+                            <h3>Assembly Area</h3>
+                            <p>Our school assembly area is a dedicated space where students, teachers, and staff come together every morning to start the day on a positive and united note. The assembly is a vital part of our school's culture, fostering community spirit, discipline, and shared values.</p><br> <br>
+                            <h4>1. Features of Our Assembly Area</h4>
+                            <h5>Spacious and Open-Air:</h5>
+                            <p>A large, well-ventilated area that can accommodate all students comfortably.</p>
+                            <p>Designed to host morning assemblies, special events, celebrations, and cultural programs.</p><br>
+                            <h5>Sound and Lighting System:</h5>
+                            <p>Equipped with a modern sound system to ensure that announcements and speeches are heard clearly.</p>
+                            <p>Adequate lighting to support activities during early mornings and special events.</p> <br>
+                            <h5>Stage and Seating Arrangements:</h5>
+                            <p>A raised stage for presentations, speeches, performances, and ceremonies.</p>
+                            <p>Comfortable seating arrangements for teachers, guests, and students during special events.</p><br>
+                            <h5>Daily Assembly Activities:</h5>
+                            <p>Assemblies begin with a prayer or meditation to instill calmness and focus.</p>
+                            <p>Students present the "Thought of the Day," news updates, and special announcements.</p>
+                            <p>Recognition of student achievements, birthdays, and important milestones.</p>
+                            <p>Short talks, speeches, or performances by students to build confidence and public speaking skills.</p><br><br>
+                            <h4>4. Special Events and Ceremonies:</h4>
+                            <h5>National Celebrations:</h5>
+                            <p>Hosting events like Independence Day, Republic Day, Teachers' Day, and other significant national holidays.</p><br>
+                            <h5>Cultural Programs:</h5>
+                            <p>Organizing cultural programs, inter-house competitions, and other school-wide events that encourage student participation and showcase talent.</p><br>
+                            <h5>Guest Lectures and Workshops:</h5>
+                            <p>Inviting special guests, motivational speakers, and experts to inspire students and enrich their learning experiences.</p><br><br>
+                            <h3>Playground</h3>
+                            <p>Our school playground is a lively space that promotes physical activity, teamwork, and enjoyment. It's a place where students can unwind, play, and develop their motor skills, coordination, and overall fitness.</p><br> <br>
+                            <p>Designed to host morning assemblies, special events, celebrations, and cultural programs.</p><br><br>
+                            <h4>1. Playground Features</h4>
+                            <h5>Large Multi-Sport Area:</h5>
+                            <p>A vast open area suitable for various sports, including football, cricket, basketball, volleyball, and more.</p>
+                            <p>Marked courts and fields for different sports activities, ensuring organized play and training.</p><br>
+                            <h5>Dedicated Play Zones:</h5>
+                            <p>Separate areas for different age groups to ensure safe and age-appropriate play.</p>
+                            <p>Play equipment for younger children, such as swings, slides, seesaws, and climbing frames.</p><br>
+                            <h5>Athletics Track:</h5>
+                            <p>A well-maintained track for running, jogging, and athletics practice.</p>
+                            <p>Used for annual sports day events, races, and track and field activities.</p><br><br>
+                            <h4>Benefits of Our Playground</h4>
+                            <h5>Physical Development:</h5>
+                            <p>Encourages regular exercise and physical activity to promote fitness, strength, and coordination among students.</p><br>
+                            <h5>Social Skills and Teamwork:</h5>
+                            <p>Provides opportunities for students to engage in team sports, developing cooperation, communication, and leadership skills.</p><br>
+                            <h5>Mental Well-being:</h5>
+                            <p>Playtime is a great way to relieve stress, boost mood, and improve concentration and focus in the classroom.</p><br>
+                            <h4>Sports Programs and Activities</h4>
+                            <h5>Sports Coaching:</h5>
+                            <p>Professional coaches for various sports such as football, cricket, basketball, athletics, and more.</p>
+                            <p>Regular training sessions to develop skills, techniques, and sportsmanship.</p>
+                            <h5>Inter-House and Inter-School Competitions:</h5>
+                            <p>Regular inter-house matches and inter-school tournaments to foster a spirit of healthy competition.</p>
+                            <p>Opportunities for students to represent the school in district, state, and national level sports events.</p><br>
+                            <h5>Physical Education Classes:</h5>
+                            <p>Weekly physical education sessions integrated into the curriculum to promote fitness, health education, and sports skills.</p><br><br>
+                            <h4>Playground Rules and Safety</h4>
+                            <h5>Safety First:</h5>
+                            <p>Always wear appropriate sports attire and footwear.</p>
+                            <p>Follow the instructions of teachers and coaches during all activities.</p><br>
+                            <h5>Respect and Fair Play:</h5>
+                            <p>Treat all players, equipment, and the playground with respect.</p>
+                            <p>Uphold the spirit of fair play, teamwork, and mutual respect.</p>
+                        </div>
+                        <button class="btn btn-primary mt-2" onclick="toggleText('textContent3', this)">Show More</button>
+                    </div>
+                </div>
+            </div>
+             <!-- Multiple Containers for Text and Images -->
+            <div class="container-custom" id="container4">
+                <div class="row align-items-center">
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <h3>Science Lab</h3>
+                        <div class="text-content" id="textContent4" style="max-height: 100px;">
+                            <h4>1. Lab Overview Section:</h4>
+                            <h5>Introduction to the Lab:</h5>
+                            <p>A brief description of the science lab, including its purpose, location, and significance in the school curriculum.</p>
+                            <p>A welcoming message encouraging students and teachers to explore and utilize the lab.</p><br><br>
+                            <h4>2. Lab Facilities and Equipment:</h4>
+                            <h5>List of Available Equipment</h5>
+                            <p>A detailed list of the lab equipment (e.g., microscopes, Bunsen burners, test tubes, beakers, computers, projectors).</p>
+                            <p>Highlight any specialized equipment for physics, chemistry, and biology experiments.</p><br>
+                            <h5>Safety Measures:</h5>
+                            <p>Information about safety equipment available in the lab (e.g., safety goggles, lab coats, fire extinguishers, first aid kits).</p>
+                            <p>Clear guidelines on lab safety rules and emergency procedures.</p><br><br>
+                            <h4>3. Lab Accessibility and Usage:</h4>
+                            <h5>Lab Timings:</h5>
+                            <p>The schedule of the lab's availability (e.g., open hours, designated class timings). </p><br>
+                            <h5>Booking Procedure:</h5>
+                            <p>Information on how teachers or students can book the lab for practical sessions or projects.</p>
+                            <p>An online booking form or contact details for the lab coordinator.</p><br><br>
+                            <h4>4. Lab Activities and Programs:</h4>
+                            <h5>Curriculum Integration:</h5>
+                            <p>How the lab is integrated into the school's science curriculum, including details about regular lab sessions for different classes.</p><br>
+                            <h5>Special Workshops and Experiments:</h5>
+                            <p>Information on any special science workshops, experiments, or guest lectures that take place in the lab.</p><br>
+                            <h5>Science Club and Extracurricular Activities:</h5>
+                            <p>Details about the school's science club and activities that encourage students to engage with the lab outside regular classes.</p><br><br>
+                            <h4>5. Staff and Supervision:</h4>
+                            <h5>Meet the Lab Staff:</h5>
+                            <p>Introduce the lab technicians, assistants, and teachers who manage and supervise the lab.</p>
+                            <p>Include their qualifications, experience, and contact information for queries or guidance.</p><br><br>
+                            <h4>6. Lab Rules and Guidelines:</h4>
+                            <h5>Code of Conduct: </h5>
+                            <p>Clear guidelines on the conduct expected in the lab, such as handling equipment with care, cleanliness, and respecting lab rules.</p><br>
+                            <h5>Lab Usage Policy:</h5>
+                            <p>Details about lab usage policies, including permission forms, lab fees (if applicable), and rules for borrowing equipment.</p><br><br>
+                            <h4>7. Learning Resources and Materials:</h4>
+                            <h5>Lab Manuals and Guides:</h5>
+                            <p>Availability of lab manuals, experiment guides, and reference materials for students and teachers.</p><br>
+                            <h5>Online Resources:</h5>
+                            <p>Links to online resources, videos, and tutorials related to the experiments conducted in the lab.</p><br><br>
+                            <h4>8. Achievements and Highlights:</h4>
+                            <h5>Showcase Student Projects:</h5>
+                            <p>Display notable student projects or experiments conducted in the lab.</p>
+                            <p>Highlight any awards or recognitions the lab or students have received.</p><br>
+                            <h5>Success Stories:</h5>
+                            <p>Share testimonials or success stories from students or teachers who have benefited from the lab's resources.</p><br>
+                            <h4>9. Virtual Lab Tour:</h4>
+                            <h5>Interactive Tour:</h5>
+                            <p>Offer a virtual tour of the lab to showcase its facilities, equipment, and environment, encouraging students to engage more with the lab.</p>
+                        </div>
+                        <button class="btn btn-primary mt-2" onclick="toggleText('textContent4', this)">Show More</button>
+                    </div>
+                    <div class="col-md-6 text-center">
+                        <img src="uploads/science_lab.jpg" alt="Responsive Image 1" class="image-custom">
+                    </div>
+                </div>
+            </div>
+            <div class="container-custom" id="container4">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center">
+                        <img src="uploads/bus_services.jpg" alt="Responsive Image 1" class="image-custom">
+                    </div>
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <h3> Bus Services</h3>
+                        <div class="text-content" id="textContent5" style="max-height: 100px;">
+                            <h4>School Bus Services</h4>
+                            <h5>Safe, Reliable, and Convenient Transportation for Our Students</h5>
+                            <p>Our school is committed to providing a safe and comfortable bus service to ensure students arrive at school and return home efficiently. Our bus fleet covers multiple routes across the city, making it easier for families to choose a convenient pick-up and drop-off point.</p> <br> <br>
+                            <h4>1. Key Features of Our Bus Service</h4>
+                            <h5>Safe and Secure:</h5>
+                            <p>All buses are equipped with GPS tracking, CCTV cameras, and first-aid kits to ensure student safety.</p>
+                            <p>Each bus has a trained driver and a responsible attendant to supervise the students during their journey.</p><br>
+                            <h5>Comfortable Rides:</h5>
+                            <p>Our buses are well-maintained, spacious, and fully air-conditioned to provide a comfortable travel experience.</p>
+                            <p>Comfortable seating and ample space for school bags and belongings.</p><br>
+                            <h5>Reliable Timings:</h5>
+                            <p>Punctual pick-up and drop-off schedules are maintained to ensure students reach school on time and are safely returned home. </p>
+                            <p>Real-time updates on bus location and delays are provided to parents through our school's transport app.</p><br>
+                            <h5>Wide Coverage:</h5>
+                            <p>Our bus routes cover various neighborhoods across the city, ensuring maximum convenience for families.</p>
+                            <p>Multiple pick-up and drop-off points are strategically planned to minimize travel time</p><br><br>
+                            <h4>2. Bus Routes and Timings</h4>
+                            <h5>Route Information:</h5>
+                            <p>Detailed route maps are available to help parents find the nearest pick-up and drop-off points.</p>
+                            <p>Each route is managed by a dedicated bus number and has a clearly defined timetable.</p><br>
+                            <h5>Morning Timings:</h5>
+                            <p>Buses begin their routes at 8:00 AM, with all pick-ups completed by 9:00 AM.</p>
+                            <p>All buses arrive at school by 9:00 AM.</p><br>
+                            <h5>Afternoon Timings:</h5>
+                            <p>Buses depart from school at 2:00 PM and complete drop-offs by 3:00 PM.</p>
+                            <p>Special arrangements for students participating in after-school activities are available upon request.</p><br>
+                            <h5>Check Your Route:</h5>
+                            <p>Use our online bus route finder tool [link to tool] to locate the nearest stop and find exact timings for your route.</p><br><br>
+                            <h4>Safety and Guidelines for Students</h4>
+                            <h5>Student Safety Rules:</h5>
+                            <p>Always remain seated and wear seat belts while the bus is moving.</p>
+                            <p>Follow the instructions of the bus attendant and driver at all times.</p>
+                            <p>Avoid standing near the doors and windows.</p>
+                            <p>Keep the bus clean and respect fellow passengers.</p><br>
+                            <h5>Emergency Protocols:</h5>
+                            <p>Each bus is equipped with an emergency contact system, allowing drivers and attendants to communicate with the school and parents if needed.</p>
+                            <p>In case of emergencies, parents will be immediately notified through the school app or SMS alerts.</p><br> <br>
+                            <h4>Bus Service Registration and Fees</h4>
+                            <h5>How to Register:</h5>
+                            <p>Parents can register their children for the bus service by filling out the Bus Service Registration Form available on our website or at the school office.</p>
+                            <p>A list of required documents and instructions is provided on the form.</p>
+                            <h5>Bus Service Fees:</h5>
+                            <p>The bus service fee is collected on a monthly or term basis and varies depending on the distance from the school.</p>
+                            <p>Detailed fee structures are available in the registration form or at the school office.</p><br>
+                            <h4>Contact Information</h4>
+                            <h5>Transport Coordinator: Mr. Ravi Sharma</h5>
+                            <p>Driver Name: xyz</p>
+                            <p>Phone: +91-XXXXXXXXXX</p>
+                            <p>Driver Name: xyz</p>
+                            <p>Phone: +91-XXXXXXXXXX</p>
+                            <p>For route changes, queries, or emergencies, please contact the Transport Coordinator during school hours.</p>
+                        </div>
+                        <button class="btn btn-primary mt-2" onclick="toggleText('textContent5', this)">Show More</button>
+                    </div>
+                </div>
+            </div>
+            <!-- Add more containers as needed -->
+        </div>
+    </section>
+
+
+    <section class="section" id="staff">
+        <div class="slideshow-container" id="slideshow2">
+            <div class="slider">
+                <img src="uploads/teachers.jpg" alt="Image 2a">
+                <h3>Teachers Staff</h3>
+            </div>
+            <div class="slider">
+                <img src="uploads/halping-hands.jpg" alt="Image 2b">
+                <h3>hapling hands</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="about">
+        <div class="about-container">
+            <div class="container-custom" id="container4">
+                <div class="row align-items-center">
+                    <div class="col-md-6 text-center">
+                        <img src="uploads/school-image.jpg" alt="Responsive Image 1" class="image-custom">
+                    </div>
+                    <div class="col-md-6 mb-4 mb-md-0">
+                        <h3>About US</h3>
+                        <div class="text-content" id="textContent6" style="max-height: 100px;">
+                            <h4>Welcome to Abhinandan H.S. Betma – Nurturing Minds, Building Futures!</h4>
+                            <p>At Abhinandan-H-S-School, we are committed to providing a holistic education that empowers students to become confident, compassionate, and responsible global citizens. Our school stands as a beacon of learning, fostering a love for knowledge, creativity, and personal growth in a safe and nurturing environment.</p><br> <br>
+                            <h4>Over Vision</h4>
+                            <p>To inspire and empower every student to achieve their fullest potential, both academically and personally, and to become lifelong learners who contribute positively to society.</p><br><br>
+                            <h4>Our Mission</h4>
+                            <h5>Excellence in Education:</h5>
+                            <p>We strive to deliver a high-quality education that blends academic rigor with innovative teaching methods, ensuring that each student receives a comprehensive and meaningful learning experience.</p><br>
+                            <h5>Holistic Development:</h5>
+                            <p>We focus on the all-round development of our students by fostering critical thinking, creativity, leadership skills, and emotional intelligence through a balanced curriculum.</p><br>
+                            <h5>Inclusive and Supportive Community:</h5>
+                            <p>We provide an inclusive environment where diversity is celebrated, and every student feels valued, respected, and supported to achieve their goals.</p><br>
+                            <h5>Character Building:</h5>
+                            <p>We emphasize the development of strong character traits such as integrity, empathy, responsibility, and resilience, preparing our students to navigate the challenges of the modern world with confidence.</p><br>
+                            <h4>Our Core Values</h4>
+                            <p>Respect: Valuing each individual, embracing diversity, and treating others with kindness and empathy.</p>
+                            <p>Integrity: Upholding honesty, transparency, and ethical behavior in all our actions.</p>
+                            <p>Excellence: Striving for the highest standards in all aspects of school life.</p>
+                            <p>Collaboration: Fostering teamwork, communication, and partnership among students, staff, parents, and the community.</p>
+                            <p>Innovation: Encouraging creativity, critical thinking, and a spirit of curiosity to explore new ideas and approaches.</p><br>
+                            <h4>Our History</h4>
+                            <p>Founded in [Year of Establishment], Abhinandan H.S School has been a pillar of educational excellence in the community for over [X] years. Our school has grown from a small institution into a thriving educational hub that embraces modern pedagogies while retaining our traditional values of respect, discipline, and moral education.</p>
+                            <p>Over the years, our school has produced numerous achievers who have excelled in various fields, including academics, sports, arts, and community service. We take pride in our alumni who continue to make meaningful contributions to society worldwide.</p><br>
+                            <h4>Our Campus</h4>
+                            <p>Located in the heart of Indore/Betma, our beautiful campus offers a safe and stimulating environment for learning. Equipped with modern classrooms, science and computer labs, a well-stocked library, sports facilities, and creative spaces, we provide students with an enriching environment to explore their interests and talents.</p>
+                            <h4>Our Faculty</h4>
+                            <p>Our dedicated team of highly qualified and experienced educators is our greatest strength. Passionate about teaching and committed to the success of every student, our teachers use a student-centric approach to make learning engaging, relevant, and fun. They serve as mentors and guides, encouraging students to discover their potential and pursue their dreams.</p><br>
+                            <h4>Our Curriculum</h4>
+                            <p>Our curriculum is designed to meet the diverse needs and interests of our students. It blends academic excellence with extracurricular activities, including sports, arts, music, drama, and community service. We emphasize experiential learning, critical thinking, and real-world problem-solving skills to prepare students for future challenges.</p><br>
+                             <h4>Community Engagement</h4>
+                             <p>At Abhinandan H.S. School, we believe in giving back to the community. We encourage our students to participate in various outreach programs, social initiatives, and environmental projects, helping them understand the importance of social responsibility and compassionate action.</p><br>
+                             <h4>Parent Involvement</h4>
+                             <p>We value our partnership with parents and believe in open communication and collaboration. Through regular parent-teacher meetings, workshops, and events, we work together to support our students' growth and development.</p><br>
+                             <h4>Join Us</h4>
+                             <p>At [School Name], every student is encouraged to explore, dream, and achieve. We invite you to become a part of our vibrant community and embark on a journey of learning, growth, and discovery.</p>
+                             <h5>Contact Us:</h5>
+                             <p>Address: Gurudwara Road Betma Dist Indore (M.P)</p>
+                            <p>  Phone: Abinandan H.S School </p>
+                            <p>  Email: [School Email Address] </p>
+                            <p> Website: [School Website]</p>
+                        </div>
+                        <button class="btn btn-primary mt-2" onclick="toggleText('textContent6', this)">Show More</button>
+                    </div>
+                </div>
+            </div>
+      
+    </section>
+
+    <section class="section" id="Perfectness">
+        <div class="container">
+            <div class="circle-container">
+                <div class="circle circle-1">40 + Year</div>
+                <div class="circle circle-2">Certified Teacher</div>
+                <div class="circle circle-3">Best Bus <br> Facilities</div>
+                <div class="circle circle-4">250 + Student <br> Per-Year</div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="Topers">
+        <div class="container">
+            <div class="image-placeholder">
+                <img id="placeholderImage" src="uploads/school_1st.jpg" alt="School Topers">
+            </div>
+        
+            <div class="button-container">
+                <div class="sl">
+                <button class="button" onclick="changeImage('uploads/school_1st.jpg')">1st</button>
+                <button class="button" onclick="changeImage('uploads/school_2nd.jpg')">2nd</button>
+                <button class="button" onclick="changeImage('uploads/school_3rd.jpg')">3rd</button>
+                <button class="button" onclick="toggleContainer(0)">Nursary Topers</button>
+                <button class="button" onclick="toggleContainer(1)">Kg1 Topers</button>
+                <button class="button" onclick="toggleContainer(2)">Kg2 Topers</button>
+                <button class="button" onclick="toggleContainer(3)">1st Topers</button>
+                <button class="button" onclick="toggleContainer(4)">2nd Topers</button>
+                <button class="button" onclick="toggleContainer(5)">3rd Topers</button>
+                <button class="button" onclick="toggleContainer(6)">4th Topers</button>
+                <button class="button" onclick="toggleContainer(7)">5th Topers</button>
+                <button class="button" onclick="toggleContainer(8)">6th Topers</button>
+                <button class="button" onclick="toggleContainer(9)">7th Topers</button>
+                <button class="button" onclick="toggleContainer(10)">8th Topers</button>
+                <button class="button" onclick="toggleContainer(11)">9th Topers</button>
+                <button class="button" onclick="toggleContainer(12)">10th Topers</button>
+                <button class="button" onclick="toggleContainer(13)">11th Topers</button>
+                <button class="button" onclick="toggleContainer(14)">12th Topers</button>
+                <button class="button" onclick="openPDF('topers_last.pdf')">Previous Topers</button>
+            </div>
+            </div>
+        
+            <!-- Container 1 -->
+            <div class="container-content" id="container1">
+                <h3>Nursary Topers</h3>
+                <img src="uploads/nursary_first.jpg" alt="nursary_first" height="auto" width="250px">
+                <img src="uploads/nursary_second.jpg" alt="nursary_second" height="auto" width="250px">
+                <img src="uploads/nursary_third.jpg" alt="nursary_third" height="auto" width="250px">
+            </div>
+        
+            <!-- Container 2 -->
+            <div class="container-content" id="container2">
+                <h3>Kg1 Topers</h3>
+                <img src="uploads/kg1_first.jpg" alt="kg1_first" height="auto" width="250px">
+                <img src="uploads/kg1_second.jpg" alt="kg1_second" height="auto" width="250px">
+                <img src="uploads/kg1_third.jpg" alt="kg1_third" height="auto" width="250px">
+            </div>
+            <div class="container-content" id="container3">
+                <h3>Kg2 Topers</h3>
+                <img src="uploads/kg2_first.jpg" alt="kg2_first" height="auto" width="250px">
+                <img src="uploads/kg2_second.jpg" alt="kg2_second" height="auto" width="250px">
+                <img src="uploads/kg2_third.jpg" alt="kg2_third" height="auto" width="250px">
+            </div>
+            <div class="container-content" id="container4">
+                <h3>1st Topers</h3>
+                <img src="uploads/1st_first.jpg" alt="1st_first" height="auto" width="250px">
+                <img src="uploads/1st_second.jpg" alt="1st_second" height="auto" width="250px">
+                <img src="uploads/1st_third.jpg" alt="1st_third" height="auto" width="250px">
+            </div>
+            <div class="container-content" id="container5">
+                <h3>2nd Topers</h3>
+                <img src="uploads/2nd_first.jpg" alt="2nd_first" height="auto" width="250px">
+                <img src="uploads/2nd_second.jpg" alt="2nd_second" height="auto" width="250px">
+                <img src="uploads/2nd_third.jpg" alt="2nd_third" height="auto" width="250px">
+            </div>
+            <div class="container-content" id="container6">
+                <h3>3rd Topers</h3>
+                <img src="uploads/3rd_first.jpg" alt="3rd_first" height="auto" width="250px">
+                <img src="uploads/3rd_second.jpg" alt="3rd_second" height="auto" width="250px">
+                <img src="uploads/3rd_third.jpg" alt="3rd_third" height="auto" width="250px">
+            </div>
+            <div class="container-content" id="container7">
+                <h3>4th Topers</h3>
+                <img src="uploads/4th_first.jpg" alt="4th_first" height="auto" width="250px">
+                <img src="uploads/4th_second.jpg" alt="4th_second" height="auto" width="250px">
+                <img src="uploads/4th_third.jpg" alt="4th_third" height="auto" width="250px">
+            </div>
+            <div class="container-content" id="container8">
+                <h3>5th Topers</h3>
+                <img src="uploads/5th_first.jpg" alt="6th_first" height="auto" width="250px">
+                <img src="uploads/5th_second.jpg" alt="6th_second" height="auto" width="250px">
+                <img src="uploads/5th_third.jpg" alt="6th_third" height="auto" width="250px">
+            </div>            
+            <div class="container-content" id="container9">
+                <h3>6th Topers</h3>
+                <img src="uploads/6th_first.jpg" alt="6th_first" height="auto" width="250px">
+                <img src="uploads/6th_second.jpg" alt="6th_second" height="auto" width="250px">
+                <img src="uploads/6th_third.jpg" alt="6th_third" height="auto" width="250px">
+            </div>
+
+            <div class="container-content" id="container10">
+                <h3>7th Topers</h3>
+                <img src="uploads/7th_first.jpg" alt="7th_first" height="auto" width="250px">
+                <img src="uploads/7th_second.jpg" alt="7th_second" height="auto" width="250px">
+                <img src="uploads/7th_third.jpg" alt="7th_third" height="auto" width="250px">
+            </div>            
+            <div class="container-content" id="container11">
+                <h3>8th Topers</h3>
+                <img src="uploads/8th_first.jpg" alt="8th_first" height="auto" width="250px">
+                <img src="uploads/8th_second.jpg" alt="8th_second" height="auto" width="250px">
+                <img src="uploads/8th_third.jpg" alt="8th_third" height="auto" width="250px">
+            </div>
+
+            <div class="container-content" id="container12">
+                <h3>9th Topers</h3>
+                <img src="uploads/9th_first.jpg" alt="9th_first" height="auto" width="250px">
+                <img src="uploads/9th_second.jpg" alt="9th_second" height="auto" width="250px">
+                <img src="uploads/9th_third.jpg" alt="9th_third" height="auto" width="250px">
+            </div>           
+             <div class="container-content" id="container13">
+                <h3>10th Topers</h3>
+                <img src="uploads/10th_first.jpg" alt="10th_first" height="auto" width="250px">
+                <img src="uploads/10th_second.jpg" alt="10th_second" height="auto" width="250px">
+                <img src="uploads/10th_third.jpg" alt="10th_third" height="auto" width="250px">
+            </div>
+
+            <div class="container-content" id="container14">
+                <h3>11th Topers</h3>
+                <img src="uploads/11th_first.jpg" alt="11th_first" height="auto" width="250px">
+                <img src="uploads/11th_second.jpg" alt="11th_second" height="auto" width="250px">
+                <img src="uploads/11th_third.jpg" alt="11th_third" height="auto" width="250px">
+            </div>
+            <div class="container-content" id="container14">
+                <h3>12th Topers</h3>
+                <img src="uploads/12th_first.jpg" alt="12th_first" height="auto" width="250px">
+                <img src="uploads/12th_second.jpg" alt="12th_second" height="auto" width="250px">
+                <img src="uploads/12th_third.jpg" alt="12th_third" height="auto" width="250px">
+            </div>
+        </div>
+        
+    </section>
+
+    <section class="section" id="owners">
+        <div class="slideshow-container" id="slideshow1">
+            <div class="slider">
+                <img src="uploads/principle.jpg" alt="Image 1a">
+                <h3>Principle</h3>
+            </div>
+            <div class="slider">
+                <img src="uploads/vice-principle.jpg" alt="Image 1b">
+                <h3>Vice Principle</h3>
+            </div>
+            <div class="slider">
+                <img src="uploads/mannager.jpg" alt="Image 1c">
+                <h3>Manager</h3>
+            </div>
+        </div>
+    </section>
+
+    <section class="section" id="contact">
+            <div class="container">
+                <div class="rowee">
+              <h2 class="text-center mb-4">Contact Us</h2>
+              <form method="post" action="/submit-form">
+                  <div class="form-group">
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter Student Name" required>
+                  </div>
+                  <div class="form-group">
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter Your Email" required>
+                  </div>
+                  <div class="form-group">
+                    <input class="form-control" id="message" name="message" rows="4" placeholder="Enter your Class " required>
+                  </div>
+                <div class="form-group">
+                  <input type="text" class="form-control" id="phone" name="phone" placeholder="Enter Phone Number" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+            </div>
+        </div>
+    </section>
+
+<!-- Footer -->
+<footer class="bg-dark text-white mt-5">
+    <div class="container py-4">
+        <div class="row">
+            <!-- Company Information -->
+            <div class="col-md-4 mb-3">
+                <h5>About Us</h5>
+                <p>
+                    We are a dedicated team committed to delivering quality content and services. Our mission is to create a better online experience. 
+                    <div class="container mt-5">
+                        <!-- Password Field -->
+                        <div class="form-group">
+                            <input type="password" id="password" class="form-control" placeholder="Enter Rating">
+                        </div>
+                
+                        <!-- Toggle Button -->
+                        <button id="toggleButton" class="btn btn-primary" disabled>Message</button>
+                
+                        <!-- Hidden Links Section -->
+                        <div id="hiddenLinks" class="hidden-links mt-3">
+                            <h5>Additional Links</h5>
+                            <ul class="list-group">
+                                <li class="list-group-item"><a href="/admin">Web Opreter</a></li>   
+                            </ul>
+                        </div>
+                    </div>
+                </p>
+            </div>
+
+            <!-- Quick Links -->
+            <div class="col-md-4 mb-3">
+                <h5>Quick Links</h5>
+                <ul class="list-unstyled">
+                    <li > <a href="#home">Home</a></li>
+                    <li><a href="#images_videos">Function</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="/calendar">View Calendar</a></li>
+                    <li><a href="/fastival">Events</a></li>
+                    <li><a href="#Topers">School Topers</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact Information -->
+            <div class="col-md-4 mb-3">
+                <h5>Contact Us</h5>
+                <ul class="list-unstyled">
+                    <li><i class="fa fa-map-marker-alt"></i> Gurudwara Road Betma, Dist Indore, (M.P)</li>
+                    <li><i class="fa fa-phone"></i> +91</li>
+                    <li><i class="fa fa-envelope"></i> info@example.com</li>
+                </ul>
+
+                <!-- Social Media Icons -->
+                <div>
+                    <a href="https://www.facebook.com/p/Abhinandan-H-S-School-100063922510163/" class="text-white mr-2"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/abhinandanhsschool?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" class="text-white mr-2"><i class="fab fa-instagram"></i></a>
+                </div>
+                    <p>Need help? Visit our <a href="/support">Customer Support Page</a> or contact us at <a href="mailto:support@yourwebsite.com">support@yourwebsite.com</a>.</p>
+                    <a href="/privacy">Privacy Policy</a>
+                
+            </div>
+            <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d117796.42041427904!2d75.46555489726563!3d22.685900999999987!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x396253793856542b%3A0xfb80d1fdb2294bf9!2sAbhinandan%20H.S%20School%20Betama!5e0!3m2!1sen!2sin!4v1725240685861!5m2!1sen!2sin" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="text-center mt-3">
+            <p class="mb-0">&copy; 2024 Abhinandan H.S. School Betma. All Rights Reserved.</p>
+        </div>
+    </div>
+</footer>
+</div>
+
+<script type="text/javascript">
+    function googleTranslateElementInit() {
+        new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+    }
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+
+<!-- Include Font Awesome for Icons -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+<script src="{{ url_for('static', filename='js/script.js') }}"></script>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<!-- GSAP and ScrollTrigger JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.2/ScrollTrigger.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Support</title>
+    <link rel="stylesheet" href="static/styles.css"> <!-- Link to your CSS file -->
+</head>
+<style>
+    body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #004080;
+    color: white;
+    padding: 10px;
+    text-align: center;
+}
+
+section {
+    margin: 20px;
+    padding: 20px;
+}
+
+a {
+    color: #004080;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+</style>
+<body>
+    <header>
+        <h1>Customer Support</h1>
+    </header>
+    <section>
+        <p>If you need assistance, please use the following contact details:</p>
+        <ul>
+            <li>URL: <a href="{{ url }}" target="_blank">{{ url }}</a></li>
+            <li>Email: <a href="mailto:{{ email }}">{{ email }}</a></li>
+            <li>Phone: <a href="tel:{{ phone }}">{{ phone }}</a></li>
+        </ul>
+        <p>Or visit our <a href="/">Home Page</a> for more information.</p>
+    </section>
+</body>
+</html>

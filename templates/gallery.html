@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gallery | Abinandan H.S. School Betma</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+    <style>
+        .gallery-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-bottom: 15px;
+            background-color: #f8f9fa;
+        }
+        .gallery-item img, .gallery-item video {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease, filter 0.3s ease;
+        }
+        .gallery-item:hover img, .gallery-item:hover video {
+            transform: scale(1.05);
+            filter: brightness(80%);
+        }
+        .gallery-item .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery-item:hover .overlay {
+            opacity: 1;
+        }
+        .overlay-text {
+            font-size: 1.2rem;
+            text-align: center;
+            padding: 10px;
+        }
+        .icon-bar {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: space-around;
+            width: 100%;
+            padding: 0 10px;
+        }
+        .icon-bar a {
+            color: white;
+            font-size: 1.2rem;
+            margin: 0 5px;
+            transition: color 0.3s;
+        }
+        .icon-bar a:hover {
+            color: #007bff;
+        }
+        .icon-bar a {
+            background: none; /* Remove background */
+            border: none; /* Remove border */
+            outline: none; /* Remove outline */
+        }
+        .nav-tabs .nav-link {
+            border: none;
+            border-radius: 0;
+        }
+        .nav-tabs .nav-link.active {
+            border-bottom: 2px solid #007bff;
+        }
+        .btn-custom {
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 30px;
+            text-transform: uppercase;
+            transition: background-color 0.3s, color 0.3s;
+        }
+        .btn-custom-primary {
+            background-color: #007bff;
+            color: white;
+            border: none;
+        }
+        .btn-custom-primary:hover {
+            background-color: #0056b3;
+        }
+        .btn-custom-secondary {
+            background-color: #6c757d;
+            color: white;
+            border: none;
+        }
+        .btn-custom-secondary:hover {
+            background-color: #5a6268;
+        }
+        .favorite-item {
+            margin-bottom: 15px;
+            position: relative;
+        }
+        .favorite-item img, .favorite-item video {
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .favorite-item .icon-bar {
+            display: none; /* Hide icons in the favorite items view */
+        }
+        .favorite-item .remove-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 1.5rem;
+            color: #e74c3c;
+            cursor: pointer;
+            transition: color 0.3s;
+        }
+        .favorite-item .remove-btn:hover {
+            color: #c0392b;
+        }
+        /* Responsive Design */
+        @media (max-width: 767.98px) {
+            .overlay-text {
+                font-size: 1rem;
+            }
+            .btn-custom {
+                font-size: 14px;
+                padding: 8px 16px;
+            }
+            /* Ensure 2 items per row on mobile */
+            .gallery-item, .favorite-item {
+                flex: 1 0 50%;
+            }
+        }
+        .back{
+            height: 50px;
+            width: 100px;
+            padding: 5px;
+            position: absolute;
+            bottom: 5%;
+            left: 48%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-4">
+        <h1 class="mb-4 text-center">Gallery</h1>
+
+        <!-- Tabs for Image and Video Gallery -->
+        <ul class="nav nav-tabs mb-4" id="myTab" role="tablist">
+            <li class="nav-item">
+                <a class="nav-link active" id="images-tab" data-toggle="tab" href="#images" role="tab" aria-controls="images" aria-selected="true">Images</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="videos-tab" data-toggle="tab" href="#videos" role="tab" aria-controls="videos" aria-selected="false">Videos</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" id="favorites-tab" data-toggle="tab" href="#favorites" role="tab" aria-controls="favorites" aria-selected="false">Favorites</a>
+            </li>
+        </ul>
+
+        <div class="tab-content" id="myTabContent">
+            <!-- Images Tab -->
+            <div class="tab-pane fade show active" id="images" role="tabpanel" aria-labelledby="images-tab">
+                <div class="row">
+                    {% for image in images %}
+                    <div class="col-md-6 col-sm-6 gallery-item">
+                        <a href="{{ url_for('gallery_file', filename=image) }}" data-toggle="lightbox" data-gallery="gallery">
+                            <img src="{{ url_for('gallery_file', filename=image) }}" alt="Image">
+                            <div class="overlay">
+                                <div class="overlay-text">View Image</div>
+                            </div>
+                        </a>
+                        <div class="icon-bar">
+                            <a href="#" class="favorite-btn" data-favorite="false" title="Favorite"><i class="fas fa-heart"></i></a>
+                            <a href="{{ url_for('gallery_file', filename=image) }}" download title="Download"><i class="fas fa-download"></i></a>
+                            <a href="#" class="share-btn" title="Share"><i class="fas fa-share"></i></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Videos Tab -->
+            <div class="tab-pane fade" id="videos" role="tabpanel" aria-labelledby="videos-tab">
+                <div class="row">
+                    {% for video in videos %}
+                    <div class="col-md-6 col-sm-6 gallery-item">
+                        <a href="{{ url_for('gallery_file', filename=video) }}" data-toggle="lightbox" data-gallery="gallery">
+                            <video controls>
+                                <source src="{{ url_for('gallery_file', filename=video) }}" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="overlay">
+                                <div class="overlay-text">Play Video</div>
+                            </div>
+                        </a>
+                        <div class="icon-bar">
+                            <a href="#" class="favorite-btn" data-favorite="false" title="Favorite"><i class="fas fa-heart"></i></a>
+                            <a href="{{ url_for('gallery_file', filename=video) }}" download title="Download"><i class="fas fa-download"></i></a>
+                            <a href="#" class="share-btn" title="Share"><i class="fas fa-share"></i></a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Favorites Tab -->
+            <div class="tab-pane fade" id="favorites" role="tabpanel" aria-labelledby="favorites-tab">
+                <div class="row" id="favorites-container">
+                    <!-- Favorites will be dynamically inserted here -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="/" class="back">Back</a>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const favoriteButtons = document.querySelectorAll('.favorite-btn');
+            const favoritesContainer = document.getElementById('favorites-container');
+
+            favoriteButtons.forEach(button => {
+                button.addEventListener('click', function () {
+                    const isFavorite = this.dataset.favorite === 'true';
+                    const item = this.closest('.gallery-item');
+                    if (isFavorite) {
+                        this.dataset.favorite = 'false';
+                        this.querySelector('i').classList.remove('text-danger');
+                        item.classList.remove('favorite-item');
+                        favoritesContainer.removeChild(item);
+                    } else {
+                        this.dataset.favorite = 'true';
+                        this.querySelector('i').classList.add('text-danger');
+                        item.classList.add('favorite-item');
+                        favoritesContainer.appendChild(item.cloneNode(true));
+                    }
+                });
+            });
+
+            // Remove favorite item functionality
+            favoritesContainer.addEventListener('click', function (event) {
+                if (event.target.classList.contains('remove-btn')) {
+                    const item = event.target.closest('.favorite-item');
+                    item.classList.remove('favorite-item');
+                    item.querySelector('.favorite-btn').dataset.favorite = 'false';
+                    item.querySelector('.favorite-btn i').classList.remove('text-danger');
+                    favoritesContainer.removeChild(item);
+                }
+            });
+
+            // Share functionality
+            document.querySelectorAll('.share-btn').forEach(button => {
+                button.addEventListener('click', function () {
+                    const url = this.closest('.gallery-item').querySelector('a').href;
+                    if (navigator.share) {
+                        navigator.share({
+                            title: 'Check this out!',
+                            url: url
+                        }).catch(console.error);
+                    } else {
+                        alert('Share not supported on this device.');
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

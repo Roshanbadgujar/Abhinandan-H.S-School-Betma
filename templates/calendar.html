@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendar | Abhinandan H.S. School Betma</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 900px;
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .calendar-header h2 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+        }
+
+        .day {
+            padding: 10px;
+            text-align: center;
+            background-color: #e9ecef;
+            position: relative;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .day:hover {
+            background-color: #ced4da;
+        }
+
+        .header {
+            font-weight: bold;
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        .day.sunday {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        .day.sunday:hover {
+            background-color: #f5c6cb;
+        }
+
+        .day.end-mark {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .event {
+            background-color: #28a745;
+            color: white;
+            border-radius: 4px;
+            padding: 2px 5px;
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+        }
+
+        .tooltip-content {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #ffffff;
+            border: 1px solid #dee2e6;
+            border-radius: 4px;
+            padding: 5px;
+            display: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            z-index: 10;
+            white-space: nowrap;
+            font-size: 12px;
+        }
+
+        .day:hover .tooltip-content {
+            display: block;
+        }
+
+        .btn {
+            margin: 0 5px;
+        }
+
+        .calendar-container {
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+        }
+        .back{
+            height: 50px;
+            width: 100px;
+            padding: 5px;
+            position: absolute;
+            bottom: 5%;
+            left: 48%;
+        }
+   </style>
+</head>
+<body>
+    <div class="container">
+        <div class="calendar-header">
+            <button id="prev-month" class="btn btn-primary">Previous</button>
+            <h2 id="month-year"></h2>
+            <button id="next-month" class="btn btn-primary">Next</button>
+        </div>
+        <div id="calendar" class="calendar calendar-container"></div>
+    </div>
+    <a href="/" class="back">Back</a>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendar = document.getElementById('calendar');
+            const monthYear = document.getElementById('month-year');
+            const prevMonthButton = document.getElementById('prev-month');
+            const nextMonthButton = document.getElementById('next-month');
+
+            let currentDate = new Date();
+
+            function createCalendar(month, year) {
+                calendar.innerHTML = '';
+                const daysOfWeek = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
+
+                daysOfWeek.forEach(day => {
+                    const dayHeader = document.createElement('div');
+                    dayHeader.classList.add('header');
+                    dayHeader.textContent = day;
+                    calendar.appendChild(dayHeader);
+                });
+
+                const firstDayOfMonth = new Date(year, month, 1).getDay();
+                const daysInMonth = new Date(year, month + 1, 0).getDate();
+
+                let dayCount = 1;
+
+                for (let i = 0; i < firstDayOfMonth; i++) {
+                    calendar.appendChild(document.createElement('div')); // Empty space
+                }
+
+                for (let i = 1; i <= daysInMonth; i++) {
+                    const dayCell = document.createElement('div');
+                    dayCell.classList.add('day');
+                    if (new Date(year, month, i).getDay() === 0) {
+                        dayCell.classList.add('sunday'); // Highlight Sundays
+                    }
+                    if (i === daysInMonth) {
+                        dayCell.classList.add('end-mark'); // Highlight last day
+                    }
+                    dayCell.textContent = dayCount;
+
+                    const eventKey = `${i}-${month + 1}`; // Example: 1-1 for Jan 1st
+                    if (events[eventKey]) {
+                        const eventSpan = document.createElement('span');
+                        eventSpan.classList.add('event');
+                        eventSpan.textContent = events[eventKey];
+                        dayCell.appendChild(eventSpan);
+
+                        const tooltip = document.createElement('div');
+                        tooltip.classList.add('tooltip-content');
+                        tooltip.innerHTML = events[eventKey];
+                        dayCell.appendChild(tooltip);
+                    }
+
+                    calendar.appendChild(dayCell);
+                    dayCount++;
+                }
+
+                monthYear.textContent = `${months[month]} ${year}`;
+            }
+
+            function updateCalendar() {
+                createCalendar(currentDate.getMonth(), currentDate.getFullYear());
+            }
+
+            prevMonthButton.addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                updateCalendar();
+            });
+
+            nextMonthButton.addEventListener('click', function() {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                updateCalendar();
+            });
+
+            const months = [
+                'January', 'February', 'March', 'April', 'May', 'June',
+                'July', 'August', 'September', 'October', 'November', 'December'
+            ];
+
+            const events = {
+                '1-1': 'New Year\'s Day',
+                '14-4': 'Ambedkar Jayanti',
+                '1-5': 'Labour Day',
+                '15-8': 'Independence Day',
+                '2-10': 'Gandhi Jayanti',
+                '25-12': 'Christmas Day',
+                '1-10': 'Navratri Starts',
+                '10-10': 'Dussehra',
+                '25-12': 'Christmas Day',
+                '7-11': 'Diwali',
+                '14-11': 'Children\'s Day',
+                // Hindu Calendar Events
+                '7-9': 'Ganesh Chaturthi',
+                '30-10': 'Diwali',
+                '25-11': 'Guru Nanak Jayanti',
+                '1-8': 'Raksha Bandhan',
+                '12-10': 'Navratri',
+                // Add more events here as needed
+            };
+
+            updateCalendar();
+        });
+    </script>
+</body>
+</html>
