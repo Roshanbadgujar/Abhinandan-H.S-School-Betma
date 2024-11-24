@@ -105,31 +105,6 @@ document.addEventListener('contextmenu', function (e) {
     e.preventDefault();
 });
 
-document.addEventListener('keydown', function (e) {
-    if (e.key === "F12" || 
-        (e.ctrlKey && e.shiftKey && e.key === 'I') || 
-        (e.ctrlKey && e.shiftKey && e.key === 'J') || 
-        (e.ctrlKey && e.key === 'U')) {
-        e.preventDefault();
-    }
-});
-
-(function () {
-    function detectDevTools() {
-        const devtools = /./;
-        devtools.toString = function () {
-            this.opened = true;
-        };
-        console.log(devtools);
-    }
-    setInterval(detectDevTools, 1000);
-})();
-
-document.addEventListener('mousedown', function (e) {
-    e.preventDefault();
-});
-
-
 
 function startSlideShow(slideshowId) {
     let slideIndex = 0;

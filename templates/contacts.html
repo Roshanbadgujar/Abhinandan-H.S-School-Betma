@@ -117,17 +117,6 @@ document.addEventListener('keydown', function (e) {
     }
 });
 
-(function () {
-    function detectDevTools() {
-        const devtools = /./;
-        devtools.toString = function () {
-            this.opened = true;
-        };
-        console.log(devtools);
-    }
-    setInterval(detectDevTools, 1000);
-})();
-
 document.addEventListener('mousedown', function (e) {
     e.preventDefault();
 });
